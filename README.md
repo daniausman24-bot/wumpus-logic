@@ -14,3 +14,14 @@ A Knowledge-Based Agent navigating a Wumpus World using **Propositional Logic an
 ##  Run Web App
 Open https://wumpus-logic.vercel.app/ directly in any browser.
 
+## How It Works
+1. Agent starts at (0,0)
+2. Perceives Breeze/Stench from adjacent cells
+3. TELLs the Knowledge Base new logical clauses in CNF
+4. Uses Resolution Refutation to ASK if neighbors are safe
+5. Moves to proven-safe cells first, risks unknown only if stuck
+
+## Tech Stack
+- HTML, CSS, JavaScript (Frontend + Inference Engine)
+- Deployed on Vercel
+
