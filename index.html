@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wumpus Logic Agent</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-left">
+      <span class="header-badge">AI Agent</span>
+      <div>
+        <h1>🧠 Wumpus <span>Logic</span> Agent</h1>
+        <div class="header-sub">Propositional Logic · Resolution Refutation · CNF Inference</div>
+      </div>
+    </div>
+    <div class="header-status">
+      <div class="pulse" id="statusPulse"></div>
+      <span id="headerStatus">IDLE</span>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT -->
+  <div class="main-layout">
+
+    <!-- LEFT PANEL -->
+    <aside class="control-panel">
+
+      <div class="panel-section-title">Config</div>
+
+      <label>ROWS
+        <input type="number" id="rowsInput" value="4" min="3" max="8" />
+      </label>
+      <label>COLUMNS
+        <input type="number" id="colsInput" value="4" min="3" max="8" />
+      </label>
+      <label>PITS
+        <input type="number" id="pitsInput" value="3" min="1" max="6" />
+      </label>
+
+      <button class="btn primary"  id="initBtn">🚀 Initialize World</button>
+      <button class="btn success"  id="stepBtn" disabled>👣 Step Agent</button>
+      <button class="btn warning"  id="autoBtn" disabled>▶️ Auto Run</button>
+      <button class="btn danger"   id="resetBtn">🔄 Reset</button>
+
+      <div class="divider"></div>
+      <div class="panel-section-title">Legend</div>
+
+      <div class="legend">
+        <div class="legend-item"><span class="dot agent"></span>Agent (Current)</div>
+        <div class="legend-item"><span class="dot safe"></span>Safe — Proven by KB</div>
+        <div class="legend-item"><span class="dot frontier"></span>Frontier — Unknown</div>
+        <div class="legend-item"><span class="dot visited"></span>Visited</div>
+        <div class="legend-item"><span class="dot unknown"></span>Unexplored</div>
+        <div class="legend-item"><span class="dot danger-dot"></span>Pit / Wumpus</div>
+      </div>
+
+    </aside>
+
+    <!-- CENTER GRID -->
+    <main class="grid-section">
+      <div id="grid-container"></div>
+      <div id="status-bar">🟡 Set parameters and click Initialize World to begin.</div>
+    </main>
+
+    <!-- RIGHT PANEL -->
+    <aside class="metrics-panel">
+
+      <div class="panel-section-title">Metrics</div>
+
+      <!-- 2×2 metrics grid -->
+      <div class="metrics-grid">
+        <div class="metric-box cyan">
+          <span class="metric-label">Inference Steps</span>
+          <span class="metric-value" id="inferenceCount">0</span>
+        </div>
+        <div class="metric-box green">
+          <span class="metric-label">Cells Visited</span>
+          <span class="metric-value" id="visitedCount">0</span>
+        </div>
+        <div class="metric-box yellow">
+          <span class="metric-label">Safe Cells</span>
+          <span class="metric-value" id="safeCount">0</span>
+        </div>
+        <div class="metric-box purple">
+          <span class="metric-label">KB Clauses</span>
+          <span class="metric-value" id="kbCount">0</span>
+        </div>
+        <!-- Full-width status -->
+        <div class="metric-box full red" id="statusBox">
+          <span class="metric-label">Agent Status</span>
+          <span class="metric-value" id="agentStatus">Idle</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="panel-section-title">Active Percepts</div>
+
+      <div class="percept-box" id="perceptBox">
+        <span style="color:var(--text-muted);font-size:0.68rem">None detected</span>
+      </div>
+
+      <div class="divider"></div>
+      <div class="panel-section-title">Knowledge Base</div>
+
+      <div class="kb-box" id="kbBox">— Empty —</div>
+
+      <div class="divider"></div>
+      <div class="panel-section-title">Agent Log</div>
+
+      <div class="log-box" id="logBox"></div>
+
+    </aside>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
